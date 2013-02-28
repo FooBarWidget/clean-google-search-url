@@ -42,7 +42,7 @@ parseUri.options = {
 
 function cleanGoogleUrl(url) {
 	var uri = parseUri(url);
-	if (uri.host.match(/^www\.google\..+$/) && uri.path == "/url" && uri.query && uri.queryKey.url) {
+	if ((uri.host.match(/^www\.google\..+$/) || uri.host == '') && uri.path == "/url" && uri.query && uri.queryKey.url) {
 		return unescape(uri.queryKey.url);
 	} else {
 		return url;
@@ -67,6 +67,7 @@ function test() {
 	console.log(cleanGoogleUrl("http://www.google.com/tos"));
 	console.log(cleanGoogleUrl("http://www.google.com/test?url=foo"));
 	console.log(cleanGoogleUrl("http://www.google.nl/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0CFYQFjAA&url=http%3A%2F%2Fwww.mattcutts.com%2Fblog%2Fclean-up-extra-url-parameters-when-searching-google%2F&ei=klTBT5OQJ4eW0QWflvisCg&usg=AFQjCNGqHWFtwg9QIgZ3RbMld-OEpdrnQw"));
+	console.log(cleanGoogleUrl("/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0CFYQFjAA&url=http%3A%2F%2Fwww.mattcutts.com%2Fblog%2Fclean-up-extra-url-parameters-when-searching-google%2F&ei=klTBT5OQJ4eW0QWflvisCg&usg=AFQjCNGqHWFtwg9QIgZ3RbMld-OEpdrnQw"));
 }
 
 if (this.window) {
