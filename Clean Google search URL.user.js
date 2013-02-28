@@ -52,7 +52,7 @@ function cleanGoogleUrl(url) {
 function install() {
 	var uri = parseUri(location.href);
 	if (uri.host.indexOf("google.") >= 0 && uri.path == "/search") {
-		var links = document.querySelectorAll("a.l");
+		var links = document.querySelectorAll("#search a");
 		for (var i = 0; i < links.length; i++) {
 			var link = links[i];
 			var href = link.getAttribute("href");
