@@ -42,8 +42,8 @@ parseUri.options = {
 
 function cleanGoogleUrl(url) {
 	var uri = parseUri(url);
-	if ((uri.host.match(/^www\.google\..+$/) || uri.host == '') && uri.path == "/url" && uri.query && uri.queryKey.url) {
-		return unescape(uri.queryKey.url);
+	if ((uri.host.match(/^www\.google\..+$/) || uri.host == '') && uri.path == "/url" && uri.query && (uri.queryKey.url || uri.queryKey.q)) {
+		return unescape(uri.queryKey.url ? uri.queryKey.url : uri.queryKey.q);
 	} else {
 		return url;
 	}
